@@ -3,9 +3,29 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { MapPin, Phone, Mail, Clock, Info } from "lucide-react"
-import { contactInfo } from "@/lib/monastery-data"
 
 export function Contact() {
+
+  const contactInfo = {
+    visitingHours: {
+      general: "6:00 AM - 6:00 PM",
+      prayerTimes: "6:00 AM, 12:00 PM, 6:00 PM",
+    },
+    guidelines: [
+      "Dress modestly and remove shoes before entering prayer halls",
+      "Maintain silence in meditation areas",
+      "Photography may be restricted in certain areas",
+      "Donations are welcome but not mandatory",
+      "Respect ongoing prayers and ceremonies",
+    ],
+    contact: {
+      phone: "+91-3592-202-XXX",
+      email: "info@sikkimmonasteries.org",
+      address: "Sikkim Buddhist Monastery Circuit, Sikkim, India",
+    },
+  }
+
+
   return (
     <section id="contact" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">

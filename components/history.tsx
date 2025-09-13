@@ -1,12 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { historicalEvents } from "@/lib/monastery-data"
 
-export function History() {
-  const timeline = historicalEvents.map((event) => ({
+export function History({ events }: { events: any[] }) {
+  const timeline = events.map((event: any) => ({
     year: event.year.toString(),
     title: event.title,
     description: event.description,
-    monastery: event.monastery,
+    monastery: event.monastery_id,
   }))
 
   return (

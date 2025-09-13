@@ -1,10 +1,9 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Calendar, Clock, MapPin, Users } from "lucide-react"
-import { upcomingEvents } from "@/lib/monastery-data"
 
-export function Events() {
-  const events = upcomingEvents.map((event) => ({
+export function Events({ events }: { events: any[] }) {
+  const mappedEvents = events.map((event: any) => ({
     title: event.title,
     description: event.description,
     date: new Date(event.date).toLocaleDateString("en-US", {
@@ -12,9 +11,9 @@ export function Events() {
       month: "long",
       day: "numeric",
     }),
-    time: event.time,
-    location: event.location,
-    type: event.type.charAt(0).toUpperCase() + event.type.slice(1),
+    time: event.time || '',
+    location: event.location || '',
+    type: event.type ? event.type.charAt(0).toUpperCase() + event.type.slice(1) : '',
     attendees:
       event.type === "pilgrimage"
         ? "Registration required"
@@ -24,6 +23,7 @@ export function Events() {
             ? "Public welcome"
             : "All invited",
   }))
+  // Replace all usages of 'events' below with 'mappedEvents'
 
   return (
     <section id="events" className="py-20 bg-background">

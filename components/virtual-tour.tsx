@@ -4,49 +4,16 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Play, Eye, Clock, Users } from "lucide-react"
-import { monasteries } from "@/lib/monastery-data"
-
-export function VirtualTour() {
+export function VirtualTour({ monasteries }: { monasteries: any[] }) {
   const [selectedTour, setSelectedTour] = useState(0)
-
-  const tours = [
-    {
-      title: "Rumtek Monastery",
-      description:
-        "Explore the Dharmachakra Centre, seat of the 17th Karmapa, with its golden stupa and traditional Tibetan architecture.",
-      duration: "12 minutes",
-      highlights: "Golden Stupa, Karmapa relics, Traditional architecture, Sacred artifacts",
-      image: "/rumtek-monastery-interior-with-golden-stupa-and-ti.jpg",
-      monastery: monasteries[0],
-    },
-    {
-      title: "Pemayangtse Monastery",
-      description:
-        "Visit the 'Perfect Sublime Lotus' monastery, one of Sikkim's oldest and most important Nyingma monasteries.",
-      duration: "10 minutes",
-      highlights: "Three-story structure, Ancient manuscripts, Guru Padmasambhava statue, Himalayan views",
-      image: "/pemayangtse-monastery-three-story-traditional-arch.jpg",
-      monastery: monasteries[1],
-    },
-    {
-      title: "Dubdi Monastery",
-      description:
-        "Experience Sikkim's oldest monastery, the 'Hermit's Cell' where the kingdom's spiritual foundation was laid.",
-      duration: "8 minutes",
-      highlights: "Original meditation caves, Historic coronation site, Ancient prayer wheels, Forest setting",
-      image: "/dubdi-monastery-ancient-meditation-caves-in-forest.jpg",
-      monastery: monasteries[2],
-    },
-    {
-      title: "Enchey Monastery",
-      description: "Discover the unique Chinese Pagoda-style monastery above Gangtok, blessed by protective deities.",
-      duration: "7 minutes",
-      highlights: "Chinese Pagoda architecture, Cham dance performances, City views, Protective deity shrines",
-      image: "/enchey-monastery-chinese-pagoda-style-architecture.jpg",
-      monastery: monasteries[3],
-    },
-  ]
-
+  const tours = monasteries.map((monastery: any, idx: number) => ({
+    title: monastery.name,
+    description: monastery.description,
+    duration: `${10 + idx * 2} minutes`,
+    highlights: monastery.significance,
+    image: monastery.virtual_tour_url || '/placeholder.jpg',
+    monastery,
+  }))
   return (
     <section id="tour" className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
